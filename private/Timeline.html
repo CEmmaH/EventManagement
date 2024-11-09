@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timeline - Event Planning</title>
+    <link rel="stylesheet" href="/public/stylesheet/Style.css">
+    <link rel="stylesheet" href="timeline.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="header">
+            <div class="logo-container">
+            <img src="/public/images/eventPlanning.webp"  alt="Event Planning Logo" class="logo">
+            </div>
+            <h1>GroupFive - Event Planning</h1>
+            <div class="nav-links">
+                <a href="/public/index.html" class="active">About</a>
+                <a href="Login.php">Login</a>
+                <a href="Plan.php">PlanNow</a>
+                <a href="Timeline.html">Timeline</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="card timeline-card">
+            <h2>Event Timeline</h2>
+            
+            <!-- Timeline Filter -->
+            <div class="timeline-filter">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+                <button class="filter-btn" data-filter="past">Past</button>
+            </div>
+
+            <!-- Timeline Container -->
+            <div class="timeline-container">
+                <!-- Timeline items will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/public/scripts/Timeline.js"></script>
+</body>
+</html>
