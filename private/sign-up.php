@@ -10,15 +10,17 @@
     <div class="container" role="main">
         <div class="card">
             <h2>Create Account</h2>
-            
-            <form class="form-group" action="/signup" method="POST">
+            <?php
+            session_start();  // start a session
+            ?>
+            <form class="form-group" action="config/signup_process.php" method="POST">
                 <div class="form-field">
                     <label for="username">Username</label>
                     <input 
                         type="text" 
                         id="username" 
                         name="username" 
-                        required
+                        value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>"
                         placeholder="Enter your username"
                     >
                 </div>
@@ -29,7 +31,7 @@
                         type="email" 
                         id="email" 
                         name="email" 
-                        required
+                        value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>"
                         placeholder="Enter your email"
                     >
                 </div>
@@ -55,7 +57,13 @@
                         placeholder="Confirm your password"
                     >
                 </div>
-
+                <?php
+                // check if there is an error in the session
+                if (isset($_SESSION['error'])) {
+                    echo "<p class='error'>" . $_SESSION['error'] . "</p>";
+                    unset($_SESSION['error']);  // clean error message
+                }
+                ?>
                 <button type="submit">Sign Up</button>
 
                 <div style="text-align: center; margin-top: 16px; color: var(--text);">

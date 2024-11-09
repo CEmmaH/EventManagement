@@ -23,19 +23,31 @@
             </div>
         </nav>
     </header>
-
+    <?php
+        session_start();
+    ?>
     <!-- Main content -->
-    <div class="container" role="main">
-        <div class="card">
-            <h2>Login</h2>
-            <div class="form-group">
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
-                <button type="submit"><a href="Submission.php">Login</a></button>
-                <p><a href="PasswordReset.php">Forgot Password</a></p>
-                <p><a href="sign-up.php">Please Sign-Up Here</a></p>
+     <form action="config/login_process.php" method="POST">
+        <div class="container" role="main">
+            <div class="card">
+                <h2>Login</h2>
+                <div class="form-group">
+                    <input type="text" name="username" id="username" placeholder="Username" 
+                    value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>"/>
+                    <input type="password" name="password" id="password"  placeholder="Password" />
+                    <?php
+                        if(isset($_SESSION['error'])){
+                            echo "<p class='error'>" . $_SESSION['error'] . "</p>";
+                            unset($_SESSION['error']);  // clean error message
+                        }
+                    ?>
+                    <button type="submit">Login</button>
+                    <p><a href="PasswordReset.php">Forgot Password</a></p>
+                    <p><a href="sign-up.php">Please Sign-Up Here</a></p>
+                </div>
             </div>
         </div>
-    </div>
+     </form>
+    
 </body>
 </html>

@@ -705,6 +705,10 @@ button:hover {
     color: #616161;
 }
 
+.error {
+    color: red;
+}
+
 /* Timeline Responsive Design */
 @media (max-width: 768px) {
     .timeline-container::before {
