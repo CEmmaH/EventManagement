@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `event` (
   `user_id` INT NOT NULL,
   `event_name` VARCHAR(500) NOT NULL,
   `event_type` VARCHAR(50) NULL,
-  ` date` DATE NOT NULL,
+  `date` DATE NOT NULL,
   `time` TIME NOT NULL,
   `location` VARCHAR(200) NOT NULL,
   `status` TINYINT NOT NULL DEFAULT 0,

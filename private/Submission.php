@@ -8,31 +8,23 @@
     <link rel="stylesheet" href="/public/stylesheet/Style.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <header>
-      <nav class="header">
-          <h1>GroupFive - Event Planning</h1>
-          <div class="nav-links">
-              <a href="/public/index.html" class="active">About Us</a>
-              <a href="Login.php">Login</a>
-              <a href="Schedule.php">Show Your Schedule</a>
-              <a href="Timeline.html">Timeline</a>
-          </div>
-      </nav>
-  </header>
-
+    <?php
+        session_start();
+        $userid = $_SESSION['userid'];
+    ?>
     <!-- Main content -->
     <div class="container" role="main">
         <div class="card">
             <h2>Submit Event</h2>
-            <form class="form-group">
-                <input type="text" placeholder="Event Name" required />
-                <input type="date" placeholder="Event Date" required />
-                <input type="time" placeholder="Event Time" required />
-                <textarea placeholder="Event Description" required></textarea>
-                <input type="text" placeholder="Location" required />
-                <input type="number" placeholder="Maximum Participants" min="1" />
-                <button type="submit"><a href="Schedule.html">Submit Event</a></button>
+            <form class="form-group" action="/private/config/create_event_process.php" method="POST">
+                <input hidden type="text" name="userid" id="userid" value="<?php echo $userid; ?>"/>
+                <input type="text" name="name" id="name" placeholder="Event Name" required />
+                <input type="date" name="date" id="date" placeholder="Event Date" required />
+                <input type="time" name="time" id="time" placeholder="Event Time" required />
+                <textarea name="description" id="description" placeholder="Event Description" required></textarea>
+                <input type="text" name="location" id="location" placeholder="Location" required />
+                <input type="number" name="max_attendees" id="max_attendees" placeholder="Maximum Participants" min="1" />
+                <button type="submit">Submit Event</button>
             </form>
         </div>
     </div>

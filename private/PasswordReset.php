@@ -20,7 +20,7 @@
                     <button type="submit">Send Reset Link</button>
                 </div>
                 <div class="form-group" style="text-align: center; margin-top: 1rem;">
-                    <a href="Login.php" style="color: var(--primary); text-decoration: none;">
+                    <a href="#" onclick="loadContent('/private/Login.php')" style="color: var(--primary); text-decoration: none;">
                         Back to Login
                     </a>
                 </div>

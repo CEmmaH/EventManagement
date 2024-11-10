@@ -8,24 +8,14 @@
     <script src="/public/scripts/calendar.js" defer></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <header>
-        <nav class="header">
-            <div class="logo-container">
-            <img src="/public/images/eventPlanning.webp"  alt="Event Planning Logo" class="logo">
-            </div>
-            <h1>GroupFive - Event Planning</h1>
-            <div class="nav-links">
-                <a href="/public/index.html" class="active">About</a>
-                <a href="Login.php">Login</a>
-                <a href="Plan.php">PlanNow</a>
-                <a href="Timeline.html">Timeline</a>
-            </div>
-        </nav>
-    </header>
-
+    <?php
+        session_start();
+        if(!isset($_SESSION['userid'])){
+            header("Location: /private/Login.php");
+            exit();
+        }
+    ?>
     <!-- Main content -->
-
     <div class="container">
         <div class="calendar-controls">
             <button class="month-nav" id="prevMonth">&lt;</button>

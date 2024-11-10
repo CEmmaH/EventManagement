@@ -13,7 +13,7 @@
             <?php
             session_start();  // start a session
             ?>
-            <form class="form-group" action="config/signup_process.php" method="POST">
+            <form class="form-group" action="/private/config/signup_process.php" method="POST">
                 <div class="form-field">
                     <label for="username">Username</label>
                     <input 
