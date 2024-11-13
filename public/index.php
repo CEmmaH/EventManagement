@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="stylesheet/Style.css">
     <link rel="stylesheet" href="stylesheet/Style_2.css">
     <script src="scripts/Script.js" defer></script>
-    <script src="scripts/Calendar.js" defer></script>
 </head>
 <body>
     <?php
@@ -23,18 +22,18 @@
             </div>
             <h1>GroupFive - Event Planning</h1>
             <div class="nav-links">
-                <a href="#" onclick="loadContent('/private/aboutus.html')" >About</a>
+                <a href="#" onclick="loadContent('/EventManagement/private/aboutus.html')" >About</a>
                 <?php
                     if(isset($_SESSION['userid'])){
-                        echo "<a href='/private/Logout.php' >Log Out</a>";
+                        echo "<a href='/EventManagement/private/Logout.php' >Log Out</a>";
                     }else{
-                        echo "<a href='#' onclick='loadContent(\"/private/Login.php\")'>Log in</a>";
+                        echo "<a href='#' onclick='loadContent(\"/EventManagement/private/Login.php\")'>Log in</a>";
 
                     }
                 ?>
-                <a href="#" onclick="loadContent('/private/events.php')">Events</a>              
-                <a href="#" onclick="loadContent('/private/Submission.php')">Create Event</a>
-                <a href="#" onclick="loadContent('/private/myevents.php')">My Event</a>
+                <a href="#" onclick="loadContent('/EventManagement/private/events.php')">Events</a>              
+                <a href="#" onclick="loadContent('/EventManagement/private/Submission.php')">Create Event</a>
+                <a href="#" onclick="loadContent('/EventManagement/private/myevents.php')">My Event</a>
             </div>
         </nav>
     </header>

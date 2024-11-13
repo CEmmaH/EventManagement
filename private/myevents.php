@@ -4,28 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events - Event Planning</title>
-    <link rel="stylesheet" href="/public/stylesheet/Style_2.css">
-    <script src="/public/scripts/Script.js" defer></script>
+    <link rel="stylesheet" href="../public/stylesheet/Style_2.css">
+    <script src="../public/scripts/Script.js" defer></script>
 </head>
 <body>
     <?php
         require "config/events_process.php";
         session_start();
-        
-        if(isset($_SESSION['userid'])){
-            $userid = $_SESSION['userid'];
-        }      
+        $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : null;
+        if (empty($userid)) {
+ //           header('Location: /public/index.php');
+            echo "<h1 class='error'>Please Log in first.</h1>";
+            exit();
+        }   
         $events = listMyEvents($userid);
     ?>
     <div class="div_container">
         <div class="">
             <h2 class="event_header">My Events</h2>
-            <div class="event_header">
-                <button class="filter-btn active" data-filter="all">All Events</button>
-                <button class="filter-btn" data-filter="upcoming">Upcoming</button>
-                <button class="filter-btn" data-filter="past">Past</button>
-            </div>
-
             <!-- Timeline Container -->
             <div class="event_container">
                 <?php
@@ -37,13 +33,11 @@
                                 <p class=\"timeline-description\">{$event['description']}</p>
                                 <p class=\"timeline-participants\">👥". getAttendees($event['id'])."/{$event['max_attendees']} Participants ";
        
-                            echo "<form method='post' action='/private/cancel_event.php'>
+                            echo "<form method='post' action='/EventManagement/private/cancel_event.php'>
                                 <input type='hidden' name='userid' value='{$userid}'>
                                 <input type='hidden' name='eventid' value='{$event['id']}'>
                                 <button type='submit'>Cancel Registration</button>
-                                </form>";
-            
-                            
+                                </form>";           
                         echo "</p></div>";               
                     }
                 ?>

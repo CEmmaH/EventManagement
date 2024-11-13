@@ -49,7 +49,7 @@
 
         if ($stmt->execute()) {
             echo "New record created successfully";
-            header("Location: /public/index.php?active=events");
+            header("Location: /EventManagement/public/index.php?active=events");
         } else {
             echo "Error: " . $stmt->error;
         }
@@ -67,7 +67,7 @@
 
         if ($stmt->execute()) {
             echo "New record created successfully";
-            header("Location: /public/index.php?active=events");
+            header("Location: /EventManagement/public/index.php?active=events");
         } else {
             echo "Error: " . $stmt->error;
         }
@@ -84,7 +84,7 @@
         $stmt->bind_param('isssssi',$userid, $name, $date, $time, $location, $description, $maxattendees);
         if ($stmt->execute()) {
             echo "New record created successfully";
-            header("Location: /public/index.php?active=events");
+            header("Location: /EventManagement/public/index.php?active=events");
         } else {
             echo "Error: " . $stmt->error;
         }
@@ -117,17 +117,79 @@
         $stmt->bind_param('i',$userid);
         $stmt->execute();
         $result = $stmt->get_result();
-        $events = $result->fetch_all(MYSQLI_ASSOC);
+        $events = $result->fetch_all(MYSQLI_ASSOC);  // get serval records to a two dimentional array
         $stmt->close();
 
         return $events;
 
     }
 
-function debug_sql($sql, $params) {
-    foreach ($params as $param) {
-        $sql = preg_replace('/\?/', "'" . $param . "'", $sql, 1);
+    function debug_sql($sql, $params) {
+        foreach ($params as $param) {
+            $sql = preg_replace('/\?/', "'" . $param . "'", $sql, 1);
+        }
+        return $sql;
     }
-    return $sql;
-}
+
+    function updateEvent($eventid, $name, $date, $time, $location, $description, $maxattendees){
+        global $conn;
+        $sql = "UPDATE event SET event_name=?, date=?, time=?, location=?, description=?, max_attendees=? 
+                WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('sssssii',$name, $date, $time, $location, $description, $maxattendees, $eventid);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    function getEventById($eventid){
+        global $conn;
+        $sql = "SELECT * FROM event WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i',$eventid);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc(); // get 1 record to an array
+        $stmt->close();
+        return $row==null?0:$row;
+    }
+
+    function searchEventByName($searchName){
+        global $conn;
+        $searchTerm = "%" . $searchName . "%";
+        $sql = "SELECT * FROM event WHERE event_name LIKE ? ORDER BY date, time";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s',$searchTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $events = $result->fetch_all(MYSQLI_ASSOC);  // get serval records to a two dimentional array
+        $stmt->close();
+        return $events;
+    }
+
+    function searchEventByNameAndLocation($searchName,$location){
+        global $conn;
+        $nameTerm = "%" . $searchName . "%";
+        $locationTerm = "%" . $location . "%";
+        $sql = "SELECT * FROM event WHERE event_name LIKE ? AND location lIKE ?  ORDER BY date, time";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('ss',$nameTerm, $locationTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $events = $result->fetch_all(MYSQLI_ASSOC);  // get serval records to a two dimentional array
+        $stmt->close();
+        return $events;
+    }
+
+    function searchEventByLocation($location){
+        global $conn;
+        $locationTerm = "%" . $location . "%";
+        $sql = "SELECT * FROM event WHERE location lIKE ?  ORDER BY date, time";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $locationTerm);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $events = $result->fetch_all(MYSQLI_ASSOC);  // get serval records to a two dimentional array
+        $stmt->close();
+        return $events;
+    }
 ?>

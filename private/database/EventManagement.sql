@@ -75,3 +75,15 @@ CREATE TABLE IF NOT EXISTS `event_attendees` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+-- -----------------------------------------------------
+--INSERT INTO password_resets (email, token, expires_at)
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `password_resets` ;
+
+CREATE TABLE IF NOT EXISTS password_resets (
+    id INT NOT NULL AUTO_INCREMENT,  
+    email VARCHAR(50) NOT NULL,      
+    token VARCHAR(255) NOT NULL,     
+    expires_at DATETIME NOT NULL,    
+    PRIMARY KEY (id)                
+);

@@ -11,7 +11,7 @@
         session_destroy();
     ?>
     <script>
-        window.location.href = '/public/index.php?active=login';
+        window.location.href = '/EventManagement/public/index.php?active=login';
     </script>
     <?php
         exit();

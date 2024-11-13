@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Event Planning</title>
-    <link rel="stylesheet" href="/public/stylesheet/Style.css">
+    <link rel="stylesheet" href="../public/stylesheet/Style.css">
 </head>
 <body>
     <?php
         session_start();   
     ?>
     <!-- Main content -->
-     <form action="/private/config/login_process.php" method="POST">
+     <form action="/EventManagement/private/config/login_process.php" method="POST">
         <div class="container" role="main">
             <div class="card">
                 <h2>Login</h2>
@@ -27,8 +27,8 @@
                         }
                     ?>
                     <button type="submit">Login</button>
-                    <p><a href="#" onclick="loadContent('/private/PasswordReset.php')">Forgot Password</a></p>
-                    <p><a href="#" onclick="loadContent('/private/sign-up.php')">Please Sign-Up Here</a></p>
+                    <p><a href="#" onclick="loadContent('/EventManagement/private/PasswordReset.php')">Forgot Password</a></p>
+                    <p><a href="#" onclick="loadContent('/EventManagement/private/sign-up.php')">Please Sign-Up Here</a></p>
                 </div>
             </div>
         </div>

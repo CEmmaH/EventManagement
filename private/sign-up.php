@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - GroupFive Event Planning</title>
-    <link rel="stylesheet" href="/public/stylesheet/Style.css">
+    <link rel="stylesheet" href="../public/stylesheet/Style.css">
 </head>
 <body>
     <div class="container" role="main">
@@ -13,7 +13,7 @@
             <?php
             session_start();  // start a session
             ?>
-            <form class="form-group" action="/private/config/signup_process.php" method="POST">
+            <form class="form-group" action="/EventManagement/private/config/signup_process.php" method="POST">
                 <div class="form-field">
                     <label for="username">Username</label>
                     <input 
@@ -21,7 +21,7 @@
                         id="username" 
                         name="username" 
                         value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>"
-                        placeholder="Enter your username"
+                        placeholder="Enter your username" required
                     >
                 </div>
 
@@ -32,7 +32,7 @@
                         id="email" 
                         name="email" 
                         value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>"
-                        placeholder="Enter your email"
+                        placeholder="Enter your email" required
                     >
                 </div>
 
@@ -68,7 +68,7 @@
 
                 <div style="text-align: center; margin-top: 16px; color: var(--text);">
                     Already have an account? 
-                    <a href="Login.php" style="color: var(--primary); text-decoration: none;">
+                    <a href="/EventManagement/public/index.php?active=login" style="color: var(--primary); text-decoration: none;">
                         Login here
                     </a>
                 </div>

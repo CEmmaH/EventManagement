@@ -12,8 +12,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['error'] = "Ussername, email, password, and confirm password cannot be empty.";
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
-    //   header("Location: ../sign-up.php");
-        header("Location: /public/index.php?active=signup");
+        header("Location: /EventManagement/public/index.php?active=signup");
+        exit();
+    }
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z]).{8,}$/', $password)) {
+        session_start(); 
+        $_SESSION['error'] = "Password should be at least 8 characters: 1 uppercase, 1 lowercase.";
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
+        header("Location: /EventManagement/public/index.php?active=signup");
         exit();
     }
     if ($password !== $confirmPassword){
@@ -21,23 +28,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['error'] = "Password and Confirm Password must match.";
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
-        header("Location: /public/index.php?active=signup");
+        header("Location: /EventManagement/public/index.php?active=signup");
         exit();
     }
     try {
         checkUserExsist($username, $email);
+
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         $sql = "INSERT INTO user (user_name, email, password) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         if ($stmt === false) {
             throw new Exception("Prepare statement failed: " . $conn->error);
         }
-        $stmt->bind_param('sss', $username, $email, $password);
+        $stmt->bind_param('sss', $username, $email, $hashedPassword);
 
         if ($stmt->execute()) {
             echo "New record created successfully";
-    //        header("Location: ../Login.php");
-            header("Location: /public/index.php?active=login");
+            header("Location: /EventManagement/public/index.php?active=login");
         } else {
             echo "Error: " . $stmt->error;
         }
@@ -61,7 +69,7 @@ function checkUserExsist($username, $email){
         $_SESSION['error'] = "Username has already existed.";
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
-        header("Location: /public/index.php?active=signup");
+        header("Location: /EventManagement/public/index.php?active=signup");
         exit();
     }
 
@@ -76,7 +84,7 @@ function checkUserExsist($username, $email){
         $_SESSION['error'] = "Email has already existed.";
         $_SESSION['username'] = $username;
         $_SESSION['email'] = $email;
-        header("Location: /public/index.php?active=signup");
+        header("Location: /EventManagement/public/index.php?active=signup");
         exit();
     }
 }

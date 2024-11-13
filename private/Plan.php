@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule - Event Planning</title>
-    <link rel="stylesheet" href="/public/stylesheet/Style.css">
-    <script src="/public/scripts/calendar.js" defer></script>
+    <link rel="stylesheet" href="../public/stylesheet/Style.css">
+    <script src="../public/scripts/calendar.js" defer></script>
 </head>
 <body>
     <?php
         session_start();
         if(!isset($_SESSION['userid'])){
-            header("Location: /private/Login.php");
+            header("Location: /EventManagement/private/Login.php");
             exit();
         }
     ?>

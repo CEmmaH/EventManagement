@@ -6,7 +6,7 @@
         $eventid = $_POST['eventid'];
         
         registerEvent($userid, $eventid);
-        header("Location: /public/index.php?active=events");
+        header("Location: /EventManagement/public/index.php?active=events");
         exit();
     }
 ?>

@@ -5,18 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Event - Event Planning</title>
-    <link rel="stylesheet" href="/public/stylesheet/Style.css">
+    <link rel="stylesheet" href="../public/stylesheet/Style.css">
+    <script src="../public/scripts/Script.js" defer></script>
 </head>
 <body>
     <?php
         session_start();
-        $userid = $_SESSION['userid'];
+        $userid = isset($_SESSION['userid']) ? $_SESSION['userid'] : null;
+   
+        if (empty($userid)) {
+
+            echo "<h1 class='error'>Please Log in first.</h1>";
+    //        header('Location: /EventManagement/public/index.php?active=login');
+            exit();
+
+            exit();
+        }
     ?>
     <!-- Main content -->
     <div class="container" role="main">
         <div class="card">
             <h2>Submit Event</h2>
-            <form class="form-group" action="/private/config/create_event_process.php" method="POST">
+            <form class="form-group" action="/EventManagement/private/config/create_event_process.php" method="POST">
                 <input hidden type="text" name="userid" id="userid" value="<?php echo $userid; ?>"/>
                 <input type="text" name="name" id="name" placeholder="Event Name" required />
                 <input type="date" name="date" id="date" placeholder="Event Date" required />
