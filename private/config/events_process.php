@@ -141,6 +141,15 @@
         $stmt->close();
     }
 
+    function deleteEvent($eventid){
+        global $conn;
+        $sql = "DELETE FROM event WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $eventid);
+        $stmt->execute();
+        $stmt->close();
+    }
+
     function getEventById($eventid){
         global $conn;
         $sql = "SELECT * FROM event WHERE id=?";

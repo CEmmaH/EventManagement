@@ -18,18 +18,18 @@
         <div class="container" role="main">
             <div class="card">
                 <h2>Search Event</h2>
-                    <div class="event_header">
-                      <input type="text" name="searchName" id="searchName" placeholder="Search By Event Name" class="search-input">
-                      <div style="display: flex; align-items: center;">   
-                      <input type="text" name="location" id="location" placeholder="" class="location-input">                
-                    </div>
-                    <?php
-                        echo "<br>";
+                    
+                    <div class="event_header">  
+                        <input type="text" name="searchName" id="searchName" placeholder="Search By Event Name" class="search-input">
+                        <input type="text" name="location" id="location" placeholder="" class="location-input">                
+                    </div>                    
+                    <?php                        
                         if(isset($_SESSION['error'])){
                             echo "<p class='error'>" . $_SESSION['error'] . "</p>";
                             unset($_SESSION['error']);  // clean error message
                         }
                     ?>
+                    <div class="event_header">
                      <button class="filter-btn" type="submit">Search Event</button>
                     </div>
             </div>

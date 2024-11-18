@@ -9,6 +9,10 @@
         session_start();
         session_unset();
         session_destroy();
+        global $conn;
+        if($conn !==null){
+            $conn->close();
+        }        
     ?>
     <script>
         window.location.href = '/EventManagement/public/index.php?active=login';

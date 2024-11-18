@@ -80,3 +80,8 @@ a {
     border: 1px solid var(--border);
     border-radius: 4px;
 }
+
+.div-button {
+    display: flex;
+    gap: 10px;
+}

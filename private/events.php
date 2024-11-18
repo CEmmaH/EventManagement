@@ -44,9 +44,16 @@
                                 <p class=\"timeline-participants\">👥". getAttendees($event['id'])."/{$event['max_attendees']} Participants ";                
                         if(isset($userid)){
                             if($userid == $event['user_id']){  
+                                echo "<div class='div-button'>";
                                 echo "<form method='post' action='/EventManagement/public/index.php?active=edit&eventid={$event['id']}'>                                                 
-                                    <button type='submit'>Edit</button>
+                                        <button type='submit'>Edit</button>
                                     </form>";    
+                                echo "<form method='post' action='../private/config/delete_event.php'>
+                                        <input type='hidden' name='userid' value='{$userid}'>
+                                        <input type='hidden' name='eventid' value='{$event['id']}'>
+                                        <button type='submit'>Delete</button>
+                                     </form>";
+                                echo "</div>";
                             }else if (hasUserBookEvent($userid, $event['id']) <=0) {
                                 echo "<form method='post' action='/EventManagement/private/register_event.php'>
                                     <input type='hidden' name='userid' value='{$userid}'>
