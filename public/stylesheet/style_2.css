@@ -85,3 +85,9 @@ a {
     display: flex;
     gap: 10px;
 }
+
+span {
+    color: red;
+    font-size: 12pt;
+    display: none;
+}

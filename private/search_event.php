@@ -11,7 +11,6 @@
     <?php
         session_start();   
         $searchName = isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : '';
-        echo $searchName;
     ?>
     <!-- Main content -->
      <form action="/EventManagement/private/config/search_event_process.php" method="POST">

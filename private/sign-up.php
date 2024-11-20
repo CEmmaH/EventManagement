@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - GroupFive Event Planning</title>
     <link rel="stylesheet" href="../public/stylesheet/Style.css">
+    <link rel="stylesheet" href="../public/stylesheet/style_2.css">
+    <script src="../public/scripts/Script.js" defer></script>
 </head>
 <body>
     <div class="container" role="main">
@@ -13,7 +15,7 @@
             <?php
             session_start();  // start a session
             ?>
-            <form class="form-group" action="/EventManagement/private/config/signup_process.php" method="POST">
+            <form id="signupForm" class="form-group" action="/EventManagement/private/config/signup_process.php" method="POST">
                 <div class="form-field">
                     <label for="username">Username</label>
                     <input 
@@ -21,8 +23,9 @@
                         id="username" 
                         name="username" 
                         value="<?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : ''; ?>"
-                        placeholder="Enter your username" required
+                        placeholder="Enter your username"
                     >
+                    <span id="usernameSpan"></span>
                 </div>
 
                 <div class="form-field">
@@ -32,8 +35,9 @@
                         id="email" 
                         name="email" 
                         value="<?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : ''; ?>"
-                        placeholder="Enter your email" required
+                        placeholder="Enter your email"
                     >
+                    <span id="emailSpan"></span>
                 </div>
 
                 <div class="form-field">
@@ -42,9 +46,9 @@
                         type="password" 
                         id="password" 
                         name="password" 
-                        required
                         placeholder="Enter your password"
                     >
+                    <span id="passwordSpan"></span>
                 </div>
 
                 <div class="form-field">
@@ -52,10 +56,10 @@
                     <input 
                         type="password" 
                         id="confirmPassword" 
-                        name="confirmPassword" 
-                        required
+                        name="confirmPassword"                         
                         placeholder="Confirm your password"
                     >
+                    <span id="confirmPasswordSpan"></span>
                 </div>
                 <?php
                 // check if there is an error in the session
@@ -64,7 +68,7 @@
                     unset($_SESSION['error']);  // clean error message
                 }
                 ?>
-                <button type="submit">Sign Up</button>
+                <button type="button" onclick="signupValidate()">Sign Up</button>
 
                 <div style="text-align: center; margin-top: 16px; color: var(--text);">
                     Already have an account? 
